@@ -1,4 +1,7 @@
+import Link from 'next/link';
 import { trpc } from '../utils/trpc';
+
+import { ArrowCircleRightIcon } from '@heroicons/react/outline';
 
 const QuestionCreator: React.FC = () => {
 	const client = trpc.useContext();
@@ -37,8 +40,13 @@ const Home = () => {
 			<h1 className='text-3xl font-bold text-center'>Questions</h1>
 			{data.map((question) => {
 				return (
-					<div className='text-2xl font-bold' key={question.id}>
-						{question.question}
+					<div className='flex flex-row' key={question.id}>
+						<div className='text-xl'>{question.question}</div>
+						<Link href={`/questions/${question.id}`}>
+							<a>
+								<ArrowCircleRightIcon className='h-4 w-5'></ArrowCircleRightIcon>
+							</a>
+						</Link>
 					</div>
 				);
 			})}
